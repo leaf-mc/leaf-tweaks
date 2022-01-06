@@ -1,6 +1,6 @@
 name: LeafTweaks
 version: '${version}'
-main: fr.alexpado.leaftweaks.LeafTweaks
+main: mc.leaf.modules.tweaks.LeafTweaks
 api-version: 1.18
 prefix: LeafTweaks
 depend: [ LeafCore ]
