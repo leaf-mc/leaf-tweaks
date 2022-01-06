@@ -1,0 +1,13 @@
+name: LeafTweaks
+version: '${version}'
+main: fr.alexpado.leaftweaks.LeafTweaks
+api-version: 1.18
+prefix: LeafTweaks
+depend: [ LeafCore ]
+authors: [ alexpado ]
+description: Small game adjustement for quality of life
+website: https://github.com/alexpado
+commands:
+  tweaks:
+    usage: /tweaks <name> <option> <value>
+    description: Configure tweaks options
