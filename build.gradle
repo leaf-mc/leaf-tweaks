@@ -33,7 +33,7 @@ repositories {
 
 dependencies {
     compileOnly group: 'io.papermc.paper', name: 'paper-api', version: '1.18.1-R0.1-SNAPSHOT'
-    implementation group: 'mc.leaf', name: 'leaf-core', version: '0.1.0-beta.0.10+a3c78e2'
+    implementation group: 'mc.leaf', name: 'leaf-core', version: '0.1.0-beta.0.11+fc9c18c'
     implementation group: 'org.jetbrains', name: 'annotations', version: '22.0.0'
 }
 
