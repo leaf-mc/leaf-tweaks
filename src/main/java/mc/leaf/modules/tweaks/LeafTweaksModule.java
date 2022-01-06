@@ -60,7 +60,7 @@ public class LeafTweaksModule implements ILeafModule {
         this.plugin.getLogger().info("Cleaning up...");
         this.hoeHarvestingTweak = null;
         this.shovelRestoreTweak = null;
-        this.plugin.registerDisabledCommand();
+        Optional.ofNullable(Bukkit.getPluginCommand("tweaks")).ifPresent(pluginCommand -> pluginCommand.setExecutor(null));
 
         this.enabled = false;
     }
