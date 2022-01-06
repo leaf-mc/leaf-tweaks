@@ -1,7 +1,6 @@
-package fr.alexpado.leaftweaks;
+package mc.leaf.modules.tweaks;
 
-import fr.alexpado.leaftweaks.commands.TweakCommand;
-import fr.alexpado.leaftweaks.module.LeafTweaksModule;
+import mc.leaf.modules.tweaks.commands.TweakCommand;
 import mc.leaf.core.interfaces.ILeafCore;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -11,8 +10,8 @@ import java.util.Optional;
 
 public final class LeafTweaks extends JavaPlugin {
 
-    public static final String PREFIX = "§l[§aLeaf§bTweaks§r§l]§r";
-    private LeafTweaksModule module = null;
+    public static final String           PREFIX = "§l[§aLeaf§bTweaks§r§l]§r";
+    private             LeafTweaksModule module = null;
 
     @Override
     public void onEnable() {

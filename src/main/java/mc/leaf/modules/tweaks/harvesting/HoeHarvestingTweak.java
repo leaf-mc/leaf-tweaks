@@ -1,6 +1,6 @@
-package fr.alexpado.leaftweaks.module.tweaks.harvesting;
+package mc.leaf.modules.tweaks.harvesting;
 
-import fr.alexpado.leaftweaks.module.LeafTweaksModule;
+import mc.leaf.modules.tweaks.LeafTweaksModule;
 import mc.leaf.core.events.LeafListener;
 import org.bukkit.*;
 import org.bukkit.block.Block;

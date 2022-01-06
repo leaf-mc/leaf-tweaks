@@ -1,4 +1,4 @@
-package fr.alexpado.leaftweaks.module.tweaks.restore;
+package mc.leaf.modules.tweaks.restore;
 
 import org.bukkit.Material;
 

@@ -1,8 +1,8 @@
-package fr.alexpado.leaftweaks.module.commands;
+package mc.leaf.modules.tweaks.commands;
 
-import fr.alexpado.leaftweaks.LeafTweaks;
-import fr.alexpado.leaftweaks.module.LeafTweaksModule;
-import fr.alexpado.leaftweaks.module.tweaks.harvesting.HoeHarvestingOptions;
+import mc.leaf.modules.tweaks.LeafTweaks;
+import mc.leaf.modules.tweaks.LeafTweaksModule;
+import mc.leaf.modules.tweaks.harvesting.HoeHarvestingOptions;
 import mc.leaf.core.api.command.PluginCommandImpl;
 import mc.leaf.core.api.command.annotations.Param;
 import mc.leaf.core.api.command.annotations.Runnable;

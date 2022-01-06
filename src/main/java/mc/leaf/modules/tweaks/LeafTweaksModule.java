@@ -1,10 +1,8 @@
-package fr.alexpado.leaftweaks.module;
+package mc.leaf.modules.tweaks;
 
-import fr.alexpado.leaftweaks.LeafTweaks;
-import fr.alexpado.leaftweaks.commands.TweakCommand;
-import fr.alexpado.leaftweaks.module.commands.TweakModuleCommand;
-import fr.alexpado.leaftweaks.module.tweaks.harvesting.HoeHarvestingTweak;
-import fr.alexpado.leaftweaks.module.tweaks.restore.ShovelRestoreTweak;
+import mc.leaf.modules.tweaks.commands.TweakModuleCommand;
+import mc.leaf.modules.tweaks.harvesting.HoeHarvestingTweak;
+import mc.leaf.modules.tweaks.restore.ShovelRestoreTweak;
 import mc.leaf.core.interfaces.ILeafCore;
 import mc.leaf.core.interfaces.ILeafModule;
 import org.bukkit.Bukkit;
@@ -18,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 public class LeafTweaksModule implements ILeafModule {

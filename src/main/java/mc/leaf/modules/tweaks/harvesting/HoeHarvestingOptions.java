@@ -1,4 +1,4 @@
-package fr.alexpado.leaftweaks.module.tweaks.harvesting;
+package mc.leaf.modules.tweaks.harvesting;
 
 import org.bukkit.Material;
 

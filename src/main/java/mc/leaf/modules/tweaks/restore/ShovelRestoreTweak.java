@@ -1,7 +1,7 @@
-package fr.alexpado.leaftweaks.module.tweaks.restore;
+package mc.leaf.modules.tweaks.restore;
 
-import fr.alexpado.leaftweaks.module.LeafTweaksModule;
 import mc.leaf.core.events.LeafListener;
+import mc.leaf.modules.tweaks.LeafTweaksModule;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;

@@ -1,6 +1,6 @@
-package fr.alexpado.leaftweaks.commands;
+package mc.leaf.modules.tweaks.commands;
 
-import fr.alexpado.leaftweaks.LeafTweaks;
+import mc.leaf.modules.tweaks.LeafTweaks;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
