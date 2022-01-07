@@ -7,6 +7,7 @@ import mc.leaf.core.api.command.annotations.Sender;
 import mc.leaf.modules.tweaks.LeafTweaks;
 import mc.leaf.modules.tweaks.LeafTweaksModule;
 import mc.leaf.modules.tweaks.harvesting.HoeHarvestingOptions;
+import mc.leaf.modules.tweaks.rest.RestRegenerationOptions;
 import mc.leaf.modules.tweaks.restore.ShovelRestoreOptions;
 import org.bukkit.command.CommandSender;
 
@@ -76,6 +77,14 @@ public class TweakModuleCommand extends PluginCommandImpl {
         boolean              state   = booleanState.equals("true");
         ShovelRestoreOptions options = this.module.getShovelRestoreTweak().getOptions();
         this.setTweakOption(sender, state, options::isUsingItemDurability, options::setUseItemDurability);
+    }
+
+    @Runnable("regenOnSleep options enabled {booleanState}")
+    public void toggleRegenOnSleepTweak(@Sender CommandSender sender, @Param String booleanState) {
+
+        boolean                 state   = booleanState.equals("true");
+        RestRegenerationOptions options = this.module.getRestRegenerationTweak().getOptions();
+        this.setTweakState(sender, state, options::isTweakEnabled, options::setTweakEnabled);
     }
 
 }

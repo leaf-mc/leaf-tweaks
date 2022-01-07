@@ -1,10 +1,11 @@
 package mc.leaf.modules.tweaks;
 
-import mc.leaf.modules.tweaks.commands.TweakModuleCommand;
-import mc.leaf.modules.tweaks.harvesting.HoeHarvestingTweak;
-import mc.leaf.modules.tweaks.restore.ShovelRestoreTweak;
 import mc.leaf.core.interfaces.ILeafCore;
 import mc.leaf.core.interfaces.ILeafModule;
+import mc.leaf.modules.tweaks.commands.TweakModuleCommand;
+import mc.leaf.modules.tweaks.harvesting.HoeHarvestingTweak;
+import mc.leaf.modules.tweaks.rest.RestRegenerationTweak;
+import mc.leaf.modules.tweaks.restore.ShovelRestoreTweak;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -20,11 +21,12 @@ import java.util.Optional;
 
 public class LeafTweaksModule implements ILeafModule {
 
-    private final LeafTweaks         plugin;
-    private final ILeafCore          core;
-    private       boolean            enabled = false;
-    private       HoeHarvestingTweak hoeHarvestingTweak;
-    private       ShovelRestoreTweak shovelRestoreTweak;
+    private final LeafTweaks            plugin;
+    private final ILeafCore             core;
+    private       boolean               enabled = false;
+    private       HoeHarvestingTweak    hoeHarvestingTweak;
+    private       ShovelRestoreTweak    shovelRestoreTweak;
+    private       RestRegenerationTweak restRegenerationTweak;
 
     public LeafTweaksModule(LeafTweaks plugin, ILeafCore core) {
 
@@ -38,31 +40,37 @@ public class LeafTweaksModule implements ILeafModule {
     public void onEnable() {
 
         this.plugin.getLogger().info("Loading tweaks...");
-        this.hoeHarvestingTweak = new HoeHarvestingTweak(this);
-        this.shovelRestoreTweak = new ShovelRestoreTweak(this);
+        this.hoeHarvestingTweak    = new HoeHarvestingTweak(this);
+        this.shovelRestoreTweak    = new ShovelRestoreTweak(this);
+        this.restRegenerationTweak = new RestRegenerationTweak();
 
         this.plugin.getLogger().info("Registering tweaks...");
         this.core.getEventBridge().register(this, this.hoeHarvestingTweak);
         this.core.getEventBridge().register(this, this.shovelRestoreTweak);
+        this.core.getEventBridge().register(this, this.restRegenerationTweak);
 
         this.plugin.getLogger().info("Registering command");
-        Optional.ofNullable(Bukkit.getPluginCommand("tweaks")).ifPresent(pluginCommand -> pluginCommand.setExecutor(new TweakModuleCommand(this)));
+        Optional.ofNullable(Bukkit.getPluginCommand("tweaks"))
+                .ifPresent(pluginCommand -> pluginCommand.setExecutor(new TweakModuleCommand(this)));
 
         this.enabled = true;
+        this.getPlugin().getLogger().info("LeafTweaks is now enabled.");
     }
 
     @Override
     public void onDisable() {
 
-        this.plugin.getLogger().info("Unregistering tweaks listeners...");
-        this.core.getEventBridge().unregister(this);
+        this.getPlugin().getLogger().info("Unregistering command...");
+        Optional.ofNullable(Bukkit.getPluginCommand("tweaks"))
+                .ifPresent(pluginCommand -> pluginCommand.setExecutor(null));
 
-        this.plugin.getLogger().info("Cleaning up...");
-        this.hoeHarvestingTweak = null;
-        this.shovelRestoreTweak = null;
-        Optional.ofNullable(Bukkit.getPluginCommand("tweaks")).ifPresent(pluginCommand -> pluginCommand.setExecutor(null));
+        this.getPlugin().getLogger().info("Cleaning up...");
+        this.hoeHarvestingTweak    = null;
+        this.shovelRestoreTweak    = null;
+        this.restRegenerationTweak = null;
 
         this.enabled = false;
+        this.getPlugin().getLogger().info("LeafTweaks is now disabled.");
     }
 
     @Override
@@ -97,6 +105,11 @@ public class LeafTweaksModule implements ILeafModule {
     public ShovelRestoreTweak getShovelRestoreTweak() {
 
         return shovelRestoreTweak;
+    }
+
+    public RestRegenerationTweak getRestRegenerationTweak() {
+
+        return restRegenerationTweak;
     }
 
     // Global helper methods
