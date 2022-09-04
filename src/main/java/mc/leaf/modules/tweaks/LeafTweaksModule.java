@@ -1,5 +1,7 @@
 package mc.leaf.modules.tweaks;
 
+import mc.leaf.core.api.command.PluginCommandImpl;
+import mc.leaf.core.interfaces.impl.LeafModule;
 import mc.leaf.modules.tweaks.commands.TweakModuleCommand;
 import mc.leaf.modules.tweaks.harvesting.HoeHarvestingTweak;
 import mc.leaf.modules.tweaks.restore.ShovelRestoreTweak;
@@ -9,6 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -16,59 +19,48 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Optional;
+import java.util.*;
 
-public class LeafTweaksModule implements ILeafModule {
+public class LeafTweaksModule extends LeafModule {
 
-    private final LeafTweaks         plugin;
-    private final ILeafCore          core;
     private       boolean            enabled = false;
     private       HoeHarvestingTweak hoeHarvestingTweak;
     private       ShovelRestoreTweak shovelRestoreTweak;
 
     public LeafTweaksModule(LeafTweaks plugin, ILeafCore core) {
 
-        this.plugin = plugin;
-
-        this.core = core;
-        this.core.registerModule(this);
+        super(core, plugin);
+        this.getCore().registerModule(this);
     }
 
     @Override
     public void onEnable() {
 
-        this.plugin.getLogger().info("Loading tweaks...");
+        this.getPlugin().getLogger().info("Loading tweaks...");
         this.hoeHarvestingTweak = new HoeHarvestingTweak(this);
         this.shovelRestoreTweak = new ShovelRestoreTweak(this);
+    }
 
-        this.plugin.getLogger().info("Registering tweaks...");
-        this.core.getEventBridge().register(this, this.hoeHarvestingTweak);
-        this.core.getEventBridge().register(this, this.shovelRestoreTweak);
+    @Override
+    public List<Listener> getListeners() {
 
-        this.plugin.getLogger().info("Registering command");
-        Optional.ofNullable(Bukkit.getPluginCommand("tweaks")).ifPresent(pluginCommand -> pluginCommand.setExecutor(new TweakModuleCommand(this)));
+        return Arrays.asList(this.hoeHarvestingTweak, this.shovelRestoreTweak);
+    }
 
-        this.enabled = true;
+    @Override
+    public Map<String, PluginCommandImpl> getCommands() {
+
+        return new HashMap<>() {{
+            this.put("tweaks", new TweakModuleCommand(LeafTweaksModule.this));
+        }};
     }
 
     @Override
     public void onDisable() {
 
-        this.plugin.getLogger().info("Unregistering tweaks listeners...");
-        this.core.getEventBridge().unregister(this);
-
-        this.plugin.getLogger().info("Cleaning up...");
+        this.getPlugin().getLogger().info("Cleaning up...");
         this.hoeHarvestingTweak = null;
         this.shovelRestoreTweak = null;
-        Optional.ofNullable(Bukkit.getPluginCommand("tweaks")).ifPresent(pluginCommand -> pluginCommand.setExecutor(null));
-
-        this.enabled = false;
-    }
-
-    @Override
-    public ILeafCore getCore() {
-
-        return this.core;
     }
 
     @Override
@@ -77,26 +69,14 @@ public class LeafTweaksModule implements ILeafModule {
         return "Tweaks";
     }
 
-    @Override
-    public boolean isEnabled() {
-
-        return this.enabled;
-    }
-
-    @Override
-    public JavaPlugin getPlugin() {
-
-        return this.plugin;
-    }
-
     public HoeHarvestingTweak getHoeHarvestingTweak() {
 
-        return hoeHarvestingTweak;
+        return this.hoeHarvestingTweak;
     }
 
     public ShovelRestoreTweak getShovelRestoreTweak() {
 
-        return shovelRestoreTweak;
+        return this.shovelRestoreTweak;
     }
 
     // Global helper methods

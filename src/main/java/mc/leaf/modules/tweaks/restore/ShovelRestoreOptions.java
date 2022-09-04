@@ -26,7 +26,7 @@ public class ShovelRestoreOptions {
 
     public boolean isTweakEnabled() {
 
-        return tweakEnabled;
+        return this.tweakEnabled;
     }
 
     public void setTweakEnabled(boolean tweakEnabled) {
@@ -41,7 +41,7 @@ public class ShovelRestoreOptions {
 
     public boolean isUsingItemDurability() {
 
-        return useItemDurability;
+        return this.useItemDurability;
     }
 
     public List<Material> getSupportedMaterials() {

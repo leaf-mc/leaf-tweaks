@@ -8,6 +8,7 @@ import org.bukkit.SoundCategory;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -26,7 +27,7 @@ public class ShovelRestoreTweak extends LeafListener {
 
     public ShovelRestoreOptions getOptions() {
 
-        return options;
+        return this.options;
     }
 
     private boolean canRestore(Material tool) {
@@ -42,6 +43,7 @@ public class ShovelRestoreTweak extends LeafListener {
     }
 
     @Override
+    @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
 
         // Tweak start

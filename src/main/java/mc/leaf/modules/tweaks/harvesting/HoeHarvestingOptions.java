@@ -32,7 +32,7 @@ public class HoeHarvestingOptions {
 
     public boolean isTweakEnabled() {
 
-        return tweakEnabled;
+        return this.tweakEnabled;
     }
 
     public void setTweakEnabled(boolean tweakEnabled) {
@@ -47,17 +47,17 @@ public class HoeHarvestingOptions {
 
     public boolean isUsingItemDurability() {
 
-        return useItemDurability;
+        return this.useItemDurability;
     }
 
     public Map<Material, Integer> getHarvestRadiusMap() {
 
-        return harvestRadiusMap;
+        return this.harvestRadiusMap;
     }
 
     public Map<Material, Material> getHarvestMaterialMap() {
 
-        return harvestMaterialMap;
+        return this.harvestMaterialMap;
     }
 
 }

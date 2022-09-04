@@ -7,6 +7,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -28,7 +29,7 @@ public class HoeHarvestingTweak extends LeafListener {
 
     public HoeHarvestingOptions getOptions() {
 
-        return options;
+        return this.options;
     }
 
     private boolean isHarvestable(Material crop) {
@@ -50,6 +51,7 @@ public class HoeHarvestingTweak extends LeafListener {
     }
 
     @Override
+    @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
 
         // Avoid double event fire
