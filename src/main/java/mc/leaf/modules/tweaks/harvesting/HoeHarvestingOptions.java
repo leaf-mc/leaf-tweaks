@@ -9,6 +9,7 @@ public class HoeHarvestingOptions {
 
     private final Map<Material, Material> harvestMaterialMap = new HashMap<>();
     private final Map<Material, Integer>  harvestRadiusMap   = new HashMap<>();
+    private final Map<Material, Integer>  harvestTimeoutMap   = new HashMap<>();
     private       boolean                 tweakEnabled       = true;
     private       boolean                 useItemDurability  = true;
 
@@ -28,6 +29,13 @@ public class HoeHarvestingOptions {
         this.harvestRadiusMap.put(Material.GOLDEN_HOE, 1);
         this.harvestRadiusMap.put(Material.DIAMOND_HOE, 1);
         this.harvestRadiusMap.put(Material.NETHERITE_HOE, 1);
+
+        this.harvestTimeoutMap.put(Material.WOODEN_HOE, 12);
+        this.harvestTimeoutMap.put(Material.STONE_HOE, 6);
+        this.harvestTimeoutMap.put(Material.IRON_HOE, 3);
+        this.harvestTimeoutMap.put(Material.GOLDEN_HOE, 1);
+        this.harvestTimeoutMap.put(Material.DIAMOND_HOE, 1);
+        this.harvestTimeoutMap.put(Material.NETHERITE_HOE, 1);
     }
 
     public boolean isTweakEnabled() {
@@ -58,6 +66,11 @@ public class HoeHarvestingOptions {
     public Map<Material, Material> getHarvestMaterialMap() {
 
         return this.harvestMaterialMap;
+    }
+
+    public Map<Material, Integer> getHarvestTimeoutMap() {
+
+        return this.harvestTimeoutMap;
     }
 
 }

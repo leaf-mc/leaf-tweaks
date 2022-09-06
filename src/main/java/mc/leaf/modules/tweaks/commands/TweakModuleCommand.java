@@ -1,12 +1,13 @@
 package mc.leaf.modules.tweaks.commands;
 
-import mc.leaf.modules.tweaks.LeafTweaks;
-import mc.leaf.modules.tweaks.LeafTweaksModule;
-import mc.leaf.modules.tweaks.harvesting.HoeHarvestingOptions;
 import mc.leaf.core.api.command.PluginCommandImpl;
 import mc.leaf.core.api.command.annotations.Param;
 import mc.leaf.core.api.command.annotations.Runnable;
 import mc.leaf.core.api.command.annotations.Sender;
+import mc.leaf.modules.tweaks.LeafTweaks;
+import mc.leaf.modules.tweaks.LeafTweaksModule;
+import mc.leaf.modules.tweaks.harvesting.HoeHarvestingOptions;
+import mc.leaf.modules.tweaks.restore.ShovelRestoreOptions;
 import org.bukkit.command.CommandSender;
 
 import java.util.function.Consumer;
@@ -65,7 +66,7 @@ public class TweakModuleCommand extends PluginCommandImpl {
     public void toggleFarmRestoreTweak(@Sender CommandSender sender, @Param String booleanState) {
 
         boolean              state   = booleanState.equals("true");
-        HoeHarvestingOptions options = this.module.getHoeHarvestingTweak().getOptions();
+        ShovelRestoreOptions options = this.module.getShovelRestoreTweak().getOptions();
         this.setTweakState(sender, state, options::isTweakEnabled, options::setTweakEnabled);
     }
 
@@ -73,7 +74,7 @@ public class TweakModuleCommand extends PluginCommandImpl {
     public void toggleFarmRestoreDurability(@Sender CommandSender sender, @Param String booleanState) {
 
         boolean              state   = booleanState.equals("true");
-        HoeHarvestingOptions options = this.module.getHoeHarvestingTweak().getOptions();
+        ShovelRestoreOptions options = this.module.getShovelRestoreTweak().getOptions();
         this.setTweakOption(sender, state, options::isUsingItemDurability, options::setUseItemDurability);
     }
 
